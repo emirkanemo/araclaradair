@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Home';
+import LandingPage from './LandingPage';
+import AnalysisPage from './AnalysisPage';
 import TablePage from './TablePage';
 import NewsDetailPage from './NewsDetailPage';
 import GasStationsPage from './GasStationsPage';
@@ -9,7 +10,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/analysis" element={<AnalysisPage />} />
         <Route path="/table/:brand" element={<TablePage />} />
         <Route path="/news/:id" element={<NewsDetailPage />} />
         <Route path="/gas-stations" element={<GasStationsPage />} />

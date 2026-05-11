@@ -6,15 +6,14 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const handleNewsClick = (e: React.MouseEvent) => {
-    if (location.pathname === '/') {
+    if (location.pathname === '/analysis') {
       e.preventDefault();
       const element = document.getElementById('news-section');
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // If we are not on home, let the Link handle it or manually navigate
-      navigate('/#news-section');
+      navigate('/analysis#news-section');
     }
   };
 
@@ -32,7 +31,7 @@ export default function Navbar() {
             İstasyonlar
           </Link>
           <Link 
-            to="/#news-section"
+            to="/analysis#news-section"
             onClick={handleNewsClick}
             className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors"
           >

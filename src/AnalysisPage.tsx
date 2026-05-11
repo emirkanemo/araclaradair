@@ -5,7 +5,7 @@ import Scrollytelling from './components/Scrollytelling';
 import { OTHER_NEWS } from './data';
 import { ArrowRight, Clock } from 'lucide-react';
 
-export default function Home() {
+export default function AnalysisPage() {
   const { hash } = useLocation();
 
   useEffect(() => {
