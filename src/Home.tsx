@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Scrollytelling from './components/Scrollytelling';
 import { OTHER_NEWS } from './data';
 import { ArrowRight, Clock } from 'lucide-react';
 
 export default function Home() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash === '#news-section') {
+      const element = document.getElementById('news-section');
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [hash]);
+
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-[#e0e0e0]">
       <Navbar />
@@ -41,7 +55,7 @@ export default function Home() {
       </section>
 
       {/* Other News Section */}
-      <section className="max-w-7xl mx-auto px-6 py-40 border-x border-white/5">
+      <section id="news-section" className="max-w-7xl mx-auto px-6 py-40 border-x border-white/5">
         <div className="flex items-center justify-between border-b border-white/10 pb-12 mb-20 px-8">
           <h2 className="text-5xl font-serif italic font-bold text-white tracking-tight">Manşetler</h2>
           <button className="flex items-center gap-3 text-white/30 hover:text-white transition-all uppercase text-[10px] font-black tracking-[0.3em]">
@@ -51,26 +65,28 @@ export default function Home() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 px-8">
           {OTHER_NEWS.map((news, i) => (
-            <article key={news.id} className="group cursor-pointer relative">
-              <div className="flex items-center gap-4 mb-8">
-                <span className="text-[9px] uppercase font-black tracking-[0.3em] text-white/80 bg-white/5 px-4 py-1.5 rounded-sm border border-white/5">
-                  {news.category}
-                </span>
-                <span className="h-[1px] w-6 bg-white/10" />
-                <span className="flex items-center gap-2 text-white/30 text-[9px] font-mono tracking-tighter">
-                  <Clock className="w-3 h-3 opacity-50" /> {news.date}
-                </span>
-              </div>
-              <h3 className="text-3xl font-serif text-white group-hover:text-white/60 transition-all mb-6 leading-tight italic">
-                {news.title}
-              </h3>
-              <p className="text-white/40 leading-relaxed mb-10 text-sm font-medium tracking-wide">
-                {news.excerpt}
-              </p>
-              <div className="flex items-center gap-3 text-white/30 font-black text-[9px] uppercase tracking-[0.4em] w-fit group-hover:text-white group-hover:gap-6 transition-all duration-500">
-                Detay <div className="w-8 h-[1px] bg-current" />
-              </div>
-            </article>
+            <Link key={news.id} to={`/news/${news.id}`} className="block group cursor-pointer relative">
+              <article>
+                <div className="flex items-center gap-4 mb-8">
+                  <span className="text-[9px] uppercase font-black tracking-[0.3em] text-white/80 bg-white/5 px-4 py-1.5 rounded-sm border border-white/5">
+                    {news.category}
+                  </span>
+                  <span className="h-[1px] w-6 bg-white/10" />
+                  <span className="flex items-center gap-2 text-white/30 text-[9px] font-mono tracking-tighter">
+                    <Clock className="w-3 h-3 opacity-50" /> {news.date}
+                  </span>
+                </div>
+                <h3 className="text-3xl font-serif text-white group-hover:text-white/60 transition-all mb-6 leading-tight italic">
+                  {news.title}
+                </h3>
+                <p className="text-white/40 leading-relaxed mb-10 text-sm font-medium tracking-wide prose prose-invert overflow-hidden line-clamp-3">
+                  {news.excerpt}
+                </p>
+                <div className="flex items-center gap-3 text-white/30 font-black text-[9px] uppercase tracking-[0.4em] w-fit group-hover:text-white group-hover:gap-6 transition-all duration-500">
+                  Read More <div className="w-8 h-[1px] bg-current" />
+                </div>
+              </article>
+            </Link>
           ))}
         </div>
       </section>
