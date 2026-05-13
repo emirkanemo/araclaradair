@@ -16,7 +16,7 @@ const SECTIONS = [
   {
     title: "Otomobil Haberleri",
     description: "En güncel lansmanlar, teknoloji haberleri ve sektörel gelişmeler.",
-    link: "/analysis#news-section",
+    link: "/news",
     icon: Newspaper,
     image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&q=80&w=1200",
     color: "from-emerald-500/20"

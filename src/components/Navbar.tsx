@@ -2,21 +2,6 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const handleNewsClick = (e: React.MouseEvent) => {
-    if (location.pathname === '/analysis') {
-      e.preventDefault();
-      const element = document.getElementById('news-section');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      navigate('/analysis#news-section');
-    }
-  };
-
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-[#0a0a0b]/60 backdrop-blur-xl border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -31,8 +16,7 @@ export default function Navbar() {
             İstasyonlar
           </Link>
           <Link 
-            to="/analysis#news-section"
-            onClick={handleNewsClick}
+            to="/news"
             className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors"
           >
             Haberler

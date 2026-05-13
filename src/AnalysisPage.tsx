@@ -1,24 +1,11 @@
-import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Scrollytelling from './components/Scrollytelling';
 import { OTHER_NEWS } from './data';
 import { ArrowRight, Clock } from 'lucide-react';
 
 export default function AnalysisPage() {
-  const { hash } = useLocation();
-
-  useEffect(() => {
-    if (hash === '#news-section') {
-      const element = document.getElementById('news-section');
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, [hash]);
-
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-[#e0e0e0]">
       <Navbar />
@@ -58,13 +45,13 @@ export default function AnalysisPage() {
       <section id="news-section" className="max-w-7xl mx-auto px-6 py-40 border-x border-white/5">
         <div className="flex items-center justify-between border-b border-white/10 pb-12 mb-20 px-8">
           <h2 className="text-5xl font-serif italic font-bold text-white tracking-tight">Manşetler</h2>
-          <button className="flex items-center gap-3 text-white/30 hover:text-white transition-all uppercase text-[10px] font-black tracking-[0.3em]">
-            Arşiv <ArrowRight className="w-3 h-3" />
-          </button>
+          <Link to="/news" className="flex items-center gap-3 text-white/30 hover:text-white transition-all uppercase text-[10px] font-black tracking-[0.3em]">
+            Tüm Haberler <ArrowRight className="w-3 h-3" />
+          </Link>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 px-8">
-          {OTHER_NEWS.map((news, i) => (
+          {OTHER_NEWS.slice(0, 2).map((news, i) => (
             <Link key={news.id} to={`/news/${news.id}`} className="block group cursor-pointer relative">
               <article>
                 <div className="flex items-center gap-4 mb-8">
